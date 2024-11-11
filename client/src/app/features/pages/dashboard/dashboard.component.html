@@ -1,0 +1,21 @@
+<div class="dashboard">
+  <app-sidebar  (toggledashboard)="toggledashboard($event)"></app-sidebar>
+
+  <div class="main-content">
+         
+        <div class="top-nav">
+            <div class="top-nav-right">
+                <button class="btn"  routerLink="/"  >Home</button>
+                <span class="user">{{user.user_name}}</span>
+                <span class="user">{{user.email}}</span>
+                <i *ngIf="!user.photo"     class="fas fa-user-alt"></i>
+           <img *ngIf="user.photo" [src]="user.photo" alt="user" class="profile-pic">
+            </div>
+        </div>
+        
+        <app-overview   *ngIf="toggle === 'Overview'"  ></app-overview>
+        <app-settings  [user]="user"   *ngIf="toggle === 'Settings'"></app-settings>
+       
+        
+    </div>
+</div>

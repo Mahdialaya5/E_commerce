@@ -1,0 +1,23 @@
+<div class="content settings">
+    <h2>User Settings</h2>
+
+    <form class="settings-form"  [formGroup]="SettingsForm" (ngSubmit)="submitForm()"   >
+      
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text"  name="name" formControlName="username" placeholder={{user.user_name}}  >
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password"  name="password"  formControlName="password" autocomplete="on"  placeholder="Enter new password">
+        </div>
+
+        <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" name="confirm-password"  formControlName="confirmPassword"  autocomplete="on"  placeholder="Confirm new password">
+        </div>
+        <p   *ngIf="succes !== ''" >{{succes}}</p>
+        <p   *ngIf="err !== ''&&succes===''" >{{err}}</p>
+    <button type="submit" class="save-button">Save Changes</button>
+    </form>
+</div>

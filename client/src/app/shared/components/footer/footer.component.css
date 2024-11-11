@@ -1,0 +1,29 @@
+.footer {
+    background-color: #333; 
+    color: #fff; 
+    text-align: center; 
+    padding: 15px 20px; 
+    position: fixed; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    font-size: 14px; 
+}
+
+.footer p {
+    margin: 0; 
+}
+
+@media (max-width: 600px) {
+    .footer {
+        font-size: 12px; 
+        padding: 10px 15px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .footer {
+        font-size: 13px; 
+        padding: 12px 18px; 
+    }
+}
