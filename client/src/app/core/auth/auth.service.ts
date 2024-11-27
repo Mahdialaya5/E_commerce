@@ -21,12 +21,13 @@ export class AuthService {
 
   private isAuthenticated = new BehaviorSubject<boolean>(false);
   private readonly cookieName = 'token'; 
+  private url:string="http://localhost:3000/api/user"
    currentuser:any
 
   constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {}
 
   login(data: UserLogin) {
-    return this.http.post<{ token: string }>('http://localhost:3000/api/user/login', data,{ 
+    return this.http.post<{ token: string }>(`${this.url}/login`, data,{ 
       withCredentials: true 
    }).pipe(
       tap(response => {
@@ -40,7 +41,7 @@ export class AuthService {
   
   getCurrentUser(){
     
-     return this.http.get<{ data: any }>('http://localhost:3000/api/user/current', {
+     return this.http.get<{ data: any }>(`${this.url}/current`, {
       withCredentials: true 
     }).pipe(
         tap(response => {
@@ -61,6 +62,6 @@ export class AuthService {
   isLoggedIn() {
     const tokenExists = this.cookieService.check(this.cookieName);
     this.isAuthenticated.next(tokenExists);
-    return this.isAuthenticated.asObservable();
+      return this.isAuthenticated.asObservable();
   }
 }

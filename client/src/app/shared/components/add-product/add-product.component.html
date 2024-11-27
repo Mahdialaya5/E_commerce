@@ -1,0 +1,25 @@
+<form class="form"   [formGroup]="productForm" (ngSubmit)="submitForm()">
+    <h2 class="title">ADD PRODUCT</h2>
+    
+  <div class="div-form"   >
+      <label for="name">name:</label>
+      <input  formControlName="name" required />
+  </div>
+  <div class="div-form"   >
+    <label for="description">description:</label>
+    <input  formControlName="description" required />
+</div>
+ <div class="div-form"   >
+    <label for="photo">upload photo:</label>
+    <input  class="upload-file"  type="file"  (change)="onFileChange($event)" required />
+  </div> 
+  <div class="div-form"   >
+    <label for="price">price:</label>
+    <input type="number"  formControlName="price" required />
+</div>
+    <button type="submit" class="btn" [disabled]="!productForm.valid">submit</button>
+    <p *ngIf="error;" class="err"   >{{error}}</p>
+     <div class="btn" (click)="cancel(false)" >cancel </div>
+  </form>
+  
+  

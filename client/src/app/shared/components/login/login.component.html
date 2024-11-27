@@ -1,0 +1,21 @@
+<div class="backdrop"   >
+<form   class="form"  [formGroup]="loginForm"  (ngSubmit)="onSubmit()" >
+    <div  class="x" (click)="cancel(false)"  >✖</div>
+    <input type="email" 
+        class="form-control"
+        placeholder="email"
+        formControlName="email"  />
+    <input
+      type="password"
+      class="form-control"
+      placeholder="passowrd"
+      autocomplete="on"
+      formControlName="password"
+    />
+
+    <p *ngIf="error;" class="err"   >{{error}}</p>
+
+    <button type="submit" class="btn">Sign In</button>
+    <a routerLink="/register" class="register" >register</a>
+  </form>
+</div>

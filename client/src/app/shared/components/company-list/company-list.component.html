@@ -1,25 +1,12 @@
 <div class="container">
-    <h1>Company list</h1>
+    <h1>Sales list</h1>
     <div class="product-grid">
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Product 1">
-            <h2>company</h2>
-              <button>show room</button>
-        </div>
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Product 1">
-            <h2>company</h2>
-        <button>show room</button>
-        </div>
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Product 1">
-            <h2>company</h2>
-        <button>show room</button>
-        </div>
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Product 1">
-            <h2>company</h2>
-        <button>show room</button>
-        </div>
+   @for (company of companyList; track company.id){
+            <div class="product-card">
+                <img   *ngIf="company.photo" [src]="company.photo" alt="company_photo">
+                <h2>{{company.user_name}}</h2>
+                  <button class="btn" [routerLink]="['/company/products',company.id]" >Show room</button>
+            </div>
+          } 
  </div>
 </div>

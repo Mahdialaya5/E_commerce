@@ -62,7 +62,7 @@ exports.login = async (req, res) => {
     res.cookie("token", token);
     return res.status(200).send({ msg: "Login success" });
   } catch (error) {
-    console.log(error);
+   return res.status(500).send(error)
   }
 };
 // get current user ==>private
@@ -70,7 +70,7 @@ exports.verify = (req, res) => {
   try {
     res.send(req.user[0]);
   } catch (error) {
-    console.log(error);
+   return res.status(500).send(error)
   }
 };
 
@@ -122,16 +122,43 @@ exports.edit = async (req, res) => {
     return res.status(400).send(error.message);
   }
 };
+exports.editPhoto=async(req,res)=>{
+
+try {   
+      
+  const  url = `${req.protocol}://${req.get("host")}/uploads/user/${req.file.filename}`
+
+  var [updatephoto] = await connectiondb.query(
+    `UPDATE users SET photo='${url}' WHERE id='${req.user[0].id}'`
+  );
+  return res.status(202).send({ msg: "Update success" });
+  
+} catch (error) {
+     return res.status(400).send(error.message);
+}  
+}
 
 //userlist=>private for admin
 exports.getUser = async (req, res) => {
   try {
     const userlist = await connectiondb.query(
-      `select * from users order by user_name`
+      `select * from users  WHERE users.role="user" order by user_name  `
     );
-    res.send(userlist[0]);
+   return res.status(200).send(userlist[0]);
   } catch (error) {
-    console.log(error);
+   
     res.status(400).send({ msg: error.message });
+  }
+};
+
+exports.getCompany = async (req, res) => {
+  try {
+    const companylist = await connectiondb.query(
+      `select id,photo,user_name from users WHERE users.role="company" order by user_name `
+    );
+   return res.status(200).send(companylist[0]);
+  } catch (error) {
+
+   return  res.status(400).send({ msg: error.message });
   }
 };

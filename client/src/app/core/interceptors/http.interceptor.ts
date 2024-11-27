@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export class AuthInterceptor implements HttpInterceptor {
   
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token=document.cookie.split('=')[1]
+    const token=typeof document !== 'undefined' ? document.cookie.split('=')[1] : undefined;
  
     const clonedRequest = req.clone({
       headers: req.headers.set('Authorization', `Bearer ${token}`)

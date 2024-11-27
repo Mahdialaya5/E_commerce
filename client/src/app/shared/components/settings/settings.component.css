@@ -52,7 +52,9 @@
 .save-button:hover {
     background-color: #555;
 }
-
+input:focus{
+    border-color: #007bff;
+}
 
 @media (max-width: 768px) {
     .settings h2 {

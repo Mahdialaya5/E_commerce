@@ -1,0 +1,23 @@
+<form class="form"   [formGroup]="productForm" (ngSubmit)="submitForm()">
+    <h2 class="title">Edit PRODUCT</h2>
+    
+  <div class="div-form"   >
+      <label for="name">name:</label>
+      <input  formControlName="name" placeholder={{oneProduct?.product_name}}   />
+  </div>
+  <div class="div-form"   >
+    <label for="description">description:</label>
+    <textarea rows="6" cols="" formControlName="description"  placeholder={{oneProduct?.description}}   ></textarea>   
+</div>
+ <div class="div-form"   >
+    <label for="photo">upload photo:</label>
+    <input  class="upload-file"  type="file"  (change)="onFileChange($event)"  />
+  </div> 
+  <div class="div-form"   >
+    <label for="price">price:</label>
+    <input type="number"  formControlName="price"  placeholder={{oneProduct?.price}}  />
+</div>
+    <button type="submit" class="btn" >submit</button>
+    <p *ngIf="error;" class="err"   >{{error}}</p>
+     <div class="btn" (click)="cancel(false)" >cancel </div>
+  </form>

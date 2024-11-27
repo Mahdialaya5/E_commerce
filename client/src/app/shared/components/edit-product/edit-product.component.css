@@ -1,0 +1,102 @@
+.btn {
+    padding: 10px 15px;
+    background-color: white;
+    color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn:disabled {
+    cursor: not-allowed; 
+     color: #666; 
+    border: 1px solid #aaa;
+    opacity: 0.6; 
+}
+.form{
+    padding:20% 2px;
+    height: 560px;
+    width: 25%;
+    background-color: #6482AD;
+    position:fixed;
+    top: 45px;
+    left:33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    gap: 3%;
+    z-index: 1000;
+}
+.div-form{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input:focus{
+    border-color: #007bff;
+}
+.toggle-password {
+    position: relative;
+    bottom: 21px;
+    left: 85px;
+ font-size: 16px; 
+  }
+
+.btn_return {
+    color: white
+}
+.title{
+    margin: 0px;
+}
+input{
+    height: 3%;
+}
+select {
+    width: 217px;
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+.upload-file{
+    margin-top: 3px;
+    width: 185px;
+    height: 60%;
+}
+.err{
+    color: rgb(157 8 8 / 93%);
+    font-weight:500;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.btn:hover {
+    background-color: #e7e7e7;
+}
+
+
+@media (max-width: 915px){
+    .form{
+        width:35%
+    }
+}
+@media (max-width: 665px){
+    .form{
+        width:45%
+    }
+}
+
+@media (max-width: 524px){
+    .form{
+        width:90%;
+        left: 2%;
+    }
+   
+}
+

@@ -14,8 +14,9 @@
     opacity: 0.6; 
 }
 .form{
-    height: 500px;
-    width: 25%;
+    height: 537px;
+    width: 27%;
+    padding: 6% 2px;
     background-color: #6482AD;
     position: absolute;
     top: 45px;
@@ -27,6 +28,9 @@
     border-radius: 10px;
     gap: 3%;
     z-index: 1000;
+}
+input:focus{
+    border-color: #007bff;
 }
 .div-form{
     
@@ -68,6 +72,7 @@ select {
 .err{
     color: rgb(157 8 8 / 93%);
     font-weight:500;
+    padding-left: 2%;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -83,19 +88,22 @@ select {
 }
 @media (max-width: 830px){
     .form{
-        width:35%
+        width:35%;
+        padding: 8% 2px;
     }
 }
-@media (max-width: 615px){
+@media (max-width: 650px){
     .form{
-        width:45%
+        width:45%;
+        padding: 9% 2px;
     }
 }
 
-@media (max-width: 475px){
+@media (max-width: 500px){
     .form{
         width:90%;
         left: 2%;
+        padding: 10% 2px;
     }
     .fa{
         right: 80px;} 

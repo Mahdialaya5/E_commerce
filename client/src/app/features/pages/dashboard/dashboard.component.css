@@ -29,12 +29,10 @@ body, html {
 .top-nav-right {
     width: 80%;
     display: flex;
+    gap:5px;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     align-items: center;
-}
-
-.top-nav-right .user {
-    margin-right: 10px;
 }
 
 .profile-pic {
@@ -44,17 +42,28 @@ body, html {
 }
 .btn {
     padding: 10px 15px;
-    background-color: transparent;
+    background-color:white;
+    border:   1px solid  #007bff;
     color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+   border-radius: 5px;
+    cursor: pointer }
+.btn_add{
+margin: 0px 33%;
 }
 .btn:hover{
     color: white;
     background-color: #007bff;
+    border-color: white;
 }
+.fa-edit{
+   color: #007bff;
+   cursor: pointer;
+}
+.input{
+    width: 10px;
+    font-size: 2rem;
+}
+
 
 @media (max-width: 768px) {
     .dashboard {
@@ -70,3 +79,8 @@ body, html {
     }
 
 }
+@media (max-width: 530px){
+    .profile-pic,.fa-user-alt{
+        display: none;
+    }
+} 

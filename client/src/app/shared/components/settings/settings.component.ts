@@ -46,8 +46,7 @@ export class SettingsComponent {
       
       },
       error: (err: any) => {
-      
-       this.err=err.error.msg
+      this.err=err.error.msg
       },
     });
 

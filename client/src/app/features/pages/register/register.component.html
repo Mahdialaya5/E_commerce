@@ -5,7 +5,7 @@
     <input  formControlName="email" type="email" required />
   </div>
   <div class="div-form" >
-   <select  formControlName="role" >
+   <select  formControlName="role"  >
     <option value="" hidden  >Select role</option>
      <option value="user"   >customer</option>
      <option value="company" >company</option>
@@ -28,6 +28,7 @@
     <i class="fa" [class]="showPassword ? 'fa-eye' : 'fa-eye-slash'"></i>
   </span>
   </div>
+  <p *ngIf="error;" class="err"   >{{error}}</p>
   <button type="submit" class="btn" [disabled]="!registerForm.valid">Register</button>
    <a class="btn_return" routerLink="/" >return </a>
 </form>

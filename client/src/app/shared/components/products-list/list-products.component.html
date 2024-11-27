@@ -1,0 +1,25 @@
+<div class="container">
+  @for (product of productList; track product.id){
+  <div class="product-card">
+    <img [src]="product.photo" alt="photo" />
+    <h2>{{ product.product_name }}</h2>
+    <h3>{{ product.user_name }}</h3>
+    <h5>Added in : {{ product.add_at }}</h5>
+    <h2>{{ product.price }} TND</h2>
+    <div class="btn">
+      <app-edit-product *ngIf="edit===true" [oneProduct]=oneProduct (return)="return($event)"   />
+      <button class="details" [routerLink]="['/product',product.id]"  *ngIf="pathname !== '/dashboard'" >Details</button>
+      <button class="edit"
+        *ngIf="pathname == '/dashboard'"
+        (click)="editProduct(product)">
+        <i class="fas fa-edit"></i>Edit</button>
+      <button
+        class="delete"
+        *ngIf="pathname == '/dashboard'"
+        (click)="delete(product.id)">
+        <i class="fas fa-trash delete-icon"></i>Delete </button>
+    </div>
+  </div>
+  }
+
+</div>

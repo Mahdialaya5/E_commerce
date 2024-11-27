@@ -10,7 +10,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptorsFromDi()),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    {provide: IMAGE_CONFIG,
-      useValue: { disableImageSizeWarning: true, disableImageLazyLoadWarning: true}},
+    {provide: IMAGE_CONFIG,useValue: { disableImageSizeWarning: true, disableImageLazyLoadWarning: true}},
   ],
 };

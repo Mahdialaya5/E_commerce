@@ -9,13 +9,19 @@
                 <span class="user">{{user.user_name}}</span>
                 <span class="user">{{user.email}}</span>
                 <i *ngIf="!user.photo"     class="fas fa-user-alt"></i>
-           <img *ngIf="user.photo" [src]="user.photo" alt="user" class="profile-pic">
-            </div>
+                <div>
+           <img *ngIf="user.photo" [src]="user.photo" alt="user" class="profile-pic user">
+           <i class="fas fa-edit" (click)="toggleEdit()"> </i>  
+          </div>
+           <input *ngIf="editphoto" type="file" (change)="onFileChange($event)"    />
+           <button class="btn" *ngIf="editphoto" (click)="Edit()"   >save</button>
+           </div>
         </div>
         
-        <app-overview   *ngIf="toggle === 'Overview'"  ></app-overview>
-        <app-settings  [user]="user"   *ngIf="toggle === 'Settings'"></app-settings>
-       
-        
+        <app-overview  *ngIf="toggle === 'Overview'"  [productsNumber]="productsNumber" ></app-overview>
+        <app-list-products  *ngIf="toggle === 'Products'" [user_id]="user.id" [pathname]="path"  />
+        <app-settings  [user]="user"   *ngIf="toggle === 'Settings'"/>
+        <app-add-product  *ngIf="add===true" [user_id]="user.id"    [add]="add" (return)="return($event)"  />
+      <button *ngIf="toggle === 'Products'" (click)="add=true" class="btn btn_add" >Add product</button>
     </div>
 </div>
