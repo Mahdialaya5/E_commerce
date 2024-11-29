@@ -11,9 +11,9 @@ export const routes: Routes = [
   
     {  path: '', component: HomeComponent ,title:"Home"},
     {  path: 'register', component: RegisterComponent ,title:"Register"},
-    {  path: 'dashboard', component: DashboardComponent ,title:"dashboard",canActivate: [AuthGuard] },
     {  path: 'products', component: ProductsComponent ,title:"products"},
     {  path: 'product/:id', component:ProductDetailsComponent,title:"product"},
+    {  path: 'dashboard', component: DashboardComponent ,title:"dashboard",canActivate: [AuthGuard] },
     { path: 'company/products/:id', component: CompanyProductsComponent, title: 'company products' },
     {  path: '**', component: HomeComponent ,title:"Home"}
 ];

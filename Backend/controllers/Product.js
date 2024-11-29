@@ -144,3 +144,16 @@ exports.deleteProduct = async (req, res) => {
     return res.status(400).send({ msg: error.message });
   }
 };
+
+exports.getNumberProducts=async(req,res)=>{
+  try {
+
+       const [products] = await connectiondb.query(
+      `SELECT COUNT(*) AS number
+       FROM products`);
+     return res.status(200).send({msg:products[0].number});
+  } catch (error) {
+   
+  return   res.status(400).send({ msg: error.message });
+  }
+}

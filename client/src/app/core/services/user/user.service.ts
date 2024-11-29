@@ -41,8 +41,12 @@ export class UserService {
   }
 
   getCompany(): any {
-    return this.http
-      .get<any>(`${this.apiUrl}/admin/getcompany`)
-      .pipe(map((response: any) => response));
+    return this.http.get<any>(`${this.apiUrl}/getcompany`).pipe(map((response: any) => response));
+  }
+  getCompanyForAdmin(): any {
+    return this.http.get<any>(`${this.apiUrl}/admin/getcompany`).pipe(map((response: any) => response));
+  }
+  getUsers(): any {
+    return this.http.get<any>(`${this.apiUrl}/admin/getuser`).pipe(map((response: any) => response));
   }
 }

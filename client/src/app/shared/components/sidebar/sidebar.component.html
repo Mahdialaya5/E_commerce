@@ -3,8 +3,10 @@
   <ul>
     <li (click)="toggle('Overview')">Overview</li>
     <li (click)="toggle('Orders')">Orders</li>
-    <li (click)="toggle('Products')">Products</li>
+    <li *ngIf='user?.role=="company"'  (click)="toggle('Products')">Products</li>
+    <li *ngIf='user?.role=="admin"'  (click)="toggle('userlist')">User list</li>
+    <li *ngIf='user?.role=="admin"'  (click)="toggle('companylist')">Company list</li>
     <li (click)="toggle('Settings')">Settings</li>
-    <li><button  (click)="Logout()" class="btn"  ><i class="fas fa-sign-out-alt"></i> Log out</button> </li>
+    <li   (click)="Logout()" class="btn Logout" > <i class="fas fa-sign-out-alt"></i> Log out </li>
   </ul>
 </div>

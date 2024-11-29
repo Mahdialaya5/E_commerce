@@ -57,4 +57,11 @@ export class ProductService {
     return this.http.delete<any>(`${this.apiUrl}/${id}`)
     .pipe(map((response: any) => response));
   }
+  
+  getNumberAllProducts(): any {
+    return this.http
+      .get<any>(`${this.apiUrl}/admin/numberproducts`)
+      .pipe(map((response: any) => response));
+  }
+
 }

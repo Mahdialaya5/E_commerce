@@ -6,7 +6,6 @@ import { ProductService } from '../../../core/services/product/product.service';
 import { FormsModule} from '@angular/forms';
 
 
-
 interface product {
   id:string;
   product_name:string;
@@ -57,7 +56,6 @@ export class ProductsComponent {
   }
 
  searchChange(){
-  
     this.search= this.data?.filter((el)=>el.product_name.toLocaleLowerCase().includes(this.inputValue.toLocaleLowerCase())) 
     this.productList=this.search
 }

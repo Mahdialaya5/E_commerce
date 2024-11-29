@@ -142,12 +142,23 @@ try {
 exports.getUser = async (req, res) => {
   try {
     const userlist = await connectiondb.query(
-      `select * from users  WHERE users.role="user" order by user_name  `
+      `select id,photo,email,user_name from users  WHERE users.role="user" order by user_name  `
     );
    return res.status(200).send(userlist[0]);
   } catch (error) {
    
     res.status(400).send({ msg: error.message });
+  }
+};
+exports.getCompanyForAdmin= async (req, res) => {
+  try {
+    const companylist = await connectiondb.query(
+      `select id,photo,email,user_name from users WHERE users.role="company" order by user_name `
+    );
+   return res.status(200).send(companylist[0]);
+  } catch (error) {
+
+   return  res.status(400).send({ msg: error.message });
   }
 };
 

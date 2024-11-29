@@ -1,0 +1,15 @@
+<div class="company-list">
+    <h1> Company List</h1>
+    <ul>
+      @for ( company of companyList; track  company.id){
+      <li class="company-item">
+        <img  *ngIf='company.photo!==""' [src]= company.photo alt=" company">
+        <img   *ngIf='company.photo==""'  src="assets/icon.png" alt="logo">
+        <div>
+          <h2>{{ company.user_name}}</h2>
+          <p>{{ company.email}}</p>
+        </div>
+      </li>}
+    
+    </ul>
+  </div>

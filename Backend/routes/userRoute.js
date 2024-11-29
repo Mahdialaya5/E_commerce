@@ -7,10 +7,11 @@ const upload=require('../utils/multer')
 
 router.post("/register",upload("user").single("file"),registerCheck(),validator,userControler.register);
 router.post("/login",loginCheck(),validator,userControler.login);
+router.get("/getcompany",userControler.getCompany)
 router.get("/current",isAuth(),userControler.verify);
 router.put("/edit",isAuth(),userControler.edit);
 router.put("/edit/photo",upload("user").single("file"),isAuth(),userControler.editPhoto);
 router.get("/admin/getuser",isAuth(),isAdmin,userControler.getUser)
-router.get("/admin/getcompany",userControler.getCompany)
+router.get("/admin/getcompany",isAuth(),isAdmin,userControler.getCompanyForAdmin)
 
 module.exports = router;

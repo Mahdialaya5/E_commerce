@@ -1,0 +1,15 @@
+<div class="user-list">
+    <h1>User List</h1>
+    <ul>
+      @for (user of users; track user.id){
+      <li class="user-item">
+        <img  *ngIf='user.photo!==""' [src]=user.photo alt="user">
+        <img   *ngIf='user.photo==""'  src="assets/icon.png" alt="logo">
+        <div>
+          <h2>{{user.user_name}}</h2>
+          <p>{{user.email}}</p>
+        </div>
+      </li>}
+    
+    </ul>
+  </div>

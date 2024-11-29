@@ -10,6 +10,8 @@ import { ProductService } from '../../../core/services/product/product.service';
 import { AddProductComponent } from '../../../shared/components/add-product/add-product.component';
 import { UserService } from '../../../core/services/user/user.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { UserListAdminComponent } from '../../../shared/components/user-list-admin/user-list-admin.component';
+import { CompanyListAdminComponent } from '../../../shared/components/company-list-admin/company-list-admin.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +22,8 @@ import { FormControl, FormGroup } from '@angular/forms';
     AddProductComponent,
     ListProductsComponent,
     SettingsComponent,
+    UserListAdminComponent,
+    CompanyListAdminComponent,
     NgIf,
     RouterLink,
   ],
@@ -39,8 +43,7 @@ export class DashboardComponent {
   newPhoto = new FormGroup({
     file: new FormControl(),
   });
-  path: string | null =
-    typeof window !== 'undefined' ? window.location.pathname : null;
+  path: string | null = typeof window !== 'undefined' ? window.location.pathname : null;
 
   constructor(
     private AuthService: AuthService,
@@ -101,9 +104,9 @@ export class DashboardComponent {
         this.AuthService.getCurrentUser().subscribe({
           next: (res: any) => {
             this.user = res;
-
-            if (this.user?.id) {
-              this.productsServices
+            switch (true) {
+              case (this.user?.id&&this.user.role==="company"):
+                this.productsServices
                 .getNumberProductsbyCompany(this.user.id)
                 .subscribe({
                   next: (res: any) => {
@@ -113,8 +116,22 @@ export class DashboardComponent {
                     throw error;
                   },
                 });
-            }
-          },
+                break;
+            
+              case (this.user?.id&&this.user.role==="admin"):
+                  this.productsServices.getNumberAllProducts()
+                  .subscribe({
+                    next: (res: any) => {
+                      this.productsNumber = res.msg;
+                    },
+                    error: (error: any) => {
+                      throw error;
+                    },
+                  });
+                  break; 
+              default:
+                break;
+            }},
           error: (error: any) => {
             throw error;
           },

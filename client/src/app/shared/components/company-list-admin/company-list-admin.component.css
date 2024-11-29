@@ -1,0 +1,60 @@
+.company-list {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  ul{
+    height: 390px;
+    overflow-y: auto;
+  }
+  .company-list h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .company-list ul {
+    list-style: none;
+  }
+  
+  .company-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .company-item:last-child {
+    border-bottom: none;
+  }
+  
+  .company-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 40%;
+  }
+  
+  .company-item h2 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  
+  .company-item p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  @media (max-width: 480px) {
+    .company-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .company-item img {
+      margin-bottom: 10px;
+    }
+  }
