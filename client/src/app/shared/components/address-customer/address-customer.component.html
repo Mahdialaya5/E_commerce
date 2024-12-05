@@ -1,0 +1,15 @@
+<div class="user-list">
+    <h1>customer</h1>
+    <ul>
+      @for (user of addressCustomer; track user.id){
+      <li class="user-item">
+     <div>
+          <h2>{{user.user_name}}</h2>
+          <h2>Order id : {{user.order_id}}</h2>
+          <p>address : {{user.adress}}</p>
+          <p>phone : {{user.phone}}</p>
+        </div>
+      </li>}
+    
+    </ul>
+  </div>

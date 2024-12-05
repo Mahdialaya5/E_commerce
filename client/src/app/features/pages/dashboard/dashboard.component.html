@@ -8,7 +8,7 @@
                 <button class="btn"  routerLink="/"  >Home</button>
                 <span class="user">{{user.user_name}}</span>
                 <span class="user">{{user.email}}</span>
-                <i *ngIf="!user.photo"     class="fas fa-user-alt"></i>
+                <i *ngIf="!user.photo"  class="fas fa-user-alt"></i>
                 <div>
            <img *ngIf="user.photo" [src]="user.photo" alt="user" class="profile-pic user">
            <i class="fas fa-edit" (click)="toggleEdit()"> </i>  
@@ -18,8 +18,11 @@
            </div>
         </div>
         
-        <app-overview [user]="user"   *ngIf="toggle === 'Overview'"  [productsNumber]="productsNumber" ></app-overview>
+        <app-overview   [user]="user"  [Total]="Total"  [ordernumber]='orders!==undefined ? orders.length:0' *ngIf="toggle === 'Overview'"  [productsNumber]="productsNumber" ></app-overview>
         <app-list-products  *ngIf="toggle === 'Products'" [user_id]="user.id" [pathname]="path"  />
+        <app-orders-company  *ngIf="toggle === 'Orders'"     />
+        <app-order-user *ngIf="toggle === 'Orders-user'" [orders]='orders'   />
+        <app-address-customer *ngIf="toggle === 'Customer'" [addressCustomer]="addressCustomer"  />
         <app-settings  [user]="user"   *ngIf="toggle === 'Settings'"/>
         <app-user-list-admin *ngIf="toggle === 'userlist'"  />
         <app-company-list-admin   *ngIf="toggle === 'companylist'" />

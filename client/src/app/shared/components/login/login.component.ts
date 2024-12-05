@@ -10,7 +10,6 @@ import {
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/auth/auth.service';
 
-import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-login',

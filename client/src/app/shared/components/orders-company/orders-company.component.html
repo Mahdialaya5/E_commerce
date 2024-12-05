@@ -1,0 +1,7 @@
+<div class="orders-container" *ngIf="orders!==undefined">
+    <div class="order-card" *ngFor="let order of orders">
+      <h3>Customer: {{ order.user_name }}</h3>
+      <p>product: {{ order.product }}</p>
+     </div>
+  </div>
+  

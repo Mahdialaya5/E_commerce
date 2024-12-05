@@ -52,6 +52,6 @@ li:hover{
         display: flex;
         justify-content: space-around;
     }
-
-   
+    li:hover{
+        padding: 3px; }
 }

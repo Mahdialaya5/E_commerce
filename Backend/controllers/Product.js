@@ -3,14 +3,12 @@ const connectiondb = require("../config/connectdb");
 //get products
 exports.getProducts = async (req, res) => {
   try {
-    const products =
-      await connectiondb.query(`SELECT products.*, users.user_name
-              FROM products
-             JOIN users ON users.id = products.company_id;`);
+    const products = await connectiondb.query(`SELECT products.*, users.user_name
+       FROM products
+       JOIN  users ON users.id=company_id `);
    return res.status(200).send(products[0]);
   } catch (error) {
-    
-    res.status(400).send({ msg: error.message });
+      res.status(500).send({ msg: error.message });
   }
 };
 

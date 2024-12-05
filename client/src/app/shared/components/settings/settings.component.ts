@@ -38,8 +38,8 @@ export class SettingsComponent {
     } 
 
     this.userService.updateUser(this.SettingsForm.value).subscribe({
-      next: () => {
-       this.succes='update succes'
+      next: (res:any) => {
+       this.succes=res.msg
       setTimeout(() => {
         window.location.reload()
       }, 1500); 

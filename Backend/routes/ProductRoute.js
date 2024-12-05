@@ -13,4 +13,5 @@ router.post("/add",isAuth(),isCompany,upload("products").single("file"),productC
 router.put("/:id",isAuth(),isCompany,upload("products").single("file"),isAuth(),isCompany,productControler.updateProduct);
 router.delete("/:id",isAuth(),isCompany,productControler.deleteProduct)
 router.get("/admin/numberproducts",isAuth(),isAdmin,productControler.getNumberProducts)
+
 module.exports = router;

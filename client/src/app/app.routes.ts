@@ -6,6 +6,7 @@ import { ProductsComponent } from './features/pages/products/products.component'
 import { CompanyProductsComponent } from './features/pages/company-products/company-products.component';
 import { ProductDetailsComponent } from './features/pages/product-details/product-details.component';
 import { AuthGuard } from './core/auth/auth.guard';
+import { OrderFormComponent } from './features/pages/order-form/order-form.component';
 
 export const routes: Routes = [
   
@@ -14,6 +15,7 @@ export const routes: Routes = [
     {  path: 'products', component: ProductsComponent ,title:"products"},
     {  path: 'product/:id', component:ProductDetailsComponent,title:"product"},
     {  path: 'dashboard', component: DashboardComponent ,title:"dashboard",canActivate: [AuthGuard] },
-    { path: 'company/products/:id', component: CompanyProductsComponent, title: 'company products' },
+    {  path: 'order/:id', component:  OrderFormComponent,title:"Order form",canActivate: [AuthGuard] },
+    { path: 'company/products/:id', component: CompanyProductsComponent, title: 'products' },
     {  path: '**', component: HomeComponent ,title:"Home"}
 ];

@@ -29,6 +29,7 @@ CREATE TABLE orders(
 CREATE TABLE order_details(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     product  VARCHAR(250) NOT NULL ,
+    phone INT ,
     user_id INT 
         FOREIGN KEY (user_id) REFERENCES users(id)
         FOREIGN KEY (product) REFERENCES products(product_name)

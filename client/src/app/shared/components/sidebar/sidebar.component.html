@@ -2,8 +2,10 @@
   <h2>Dashboard</h2>
   <ul>
     <li (click)="toggle('Overview')">Overview</li>
-    <li (click)="toggle('Orders')">Orders</li>
     <li *ngIf='user?.role=="company"'  (click)="toggle('Products')">Products</li>
+    <li *ngIf='user?.role=="company"'  (click)="toggle('Orders')">Orders</li>
+    <li *ngIf='user?.role=="user"'   (click)="toggle('Orders-user')">My orders</li>
+    <li *ngIf='user?.role=="company"'  (click)="toggle('Customer')">My customer</li>
     <li *ngIf='user?.role=="admin"'  (click)="toggle('userlist')">User list</li>
     <li *ngIf='user?.role=="admin"'  (click)="toggle('companylist')">Company list</li>
     <li (click)="toggle('Settings')">Settings</li>

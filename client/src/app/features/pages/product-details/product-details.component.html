@@ -1,10 +1,13 @@
 
-<div *ngIf="product"   >
+<div *ngIf="product" class="details"  >
     <img    [src]="product.photo" alt="photo" />
     <h2>{{ product.product_name }}</h2>
     <h3>{{ product.user_name }}</h3>
     <h5>Added in : {{ product.add_at }}</h5>
     <h2>{{ product.price }} TND</h2>
     <p>{{product.description}}</p>
-<button routerLink="/" >Return </button>
+    <div class="btns" >
+<button routerLink="/" >Cancel </button>
+<button  *ngIf='role=="user"' [routerLink]="['/order',product.id]" >Send order</button>
+</div>
 </div>
