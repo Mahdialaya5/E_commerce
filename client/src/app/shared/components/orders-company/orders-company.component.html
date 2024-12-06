@@ -1,7 +1,10 @@
 <div class="orders-container" *ngIf="orders!==undefined">
     <div class="order-card" *ngFor="let order of orders">
+      <h3>Order id: {{ order.order_id }}</h3>
       <h3>Customer: {{ order.user_name }}</h3>
-      <p>product: {{ order.product }}</p>
+      <p>product: {{ order.product_name }}</p>
+      <p>Date: {{formatDate(order.Date)}}</p>
+      <p>Price: {{ order.price }} TND </p>
      </div>
   </div>
   

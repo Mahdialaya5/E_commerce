@@ -1,15 +1,14 @@
 <div class="user-list">
     <h1>customer</h1>
-    <ul>
-      @for (user of addressCustomer; track user.id){
-      <li class="user-item">
+    <ul  *ngIf="addressCustomer!==undefined"  >
+     <li class="user-item" *ngFor="let user of addressCustomer"   >
      <div>
           <h2>{{user.user_name}}</h2>
           <h2>Order id : {{user.order_id}}</h2>
           <p>address : {{user.adress}}</p>
           <p>phone : {{user.phone}}</p>
         </div>
-      </li>}
+      </li>
     
     </ul>
   </div>

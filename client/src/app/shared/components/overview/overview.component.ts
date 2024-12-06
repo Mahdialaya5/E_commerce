@@ -15,6 +15,6 @@ export class OverviewComponent {
   @Input() user:any
   @Input() ordernumber:number=0
   @Input() Total:number=0
- 
-  
+  @Input() ordersCompanyNumber:number=0
+  @Input() TotalCustomer:number=0
  }

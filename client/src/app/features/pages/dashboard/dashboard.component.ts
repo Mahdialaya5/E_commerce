@@ -17,23 +17,23 @@ import { OrdersCompanyComponent } from '../../../shared/components/orders-compan
 import { AddressCustomerComponent } from '../../../shared/components/address-customer/address-customer.component';
 import { OrderUserComponent } from '../../../shared/components/order-user/order-user.component';
 import { TotalPricePipe } from '../../../shared/pipes/user/total-price.pipe';
-
+import { TotalPipe } from '../../../shared/pipes/company/TotalOrders/total.pipe';
+import { CustomerPipe } from '../../../shared/pipes/company/customer/customer.pipe';
 
 interface order {
   order_id: number;
-  adress:string;
- phone: number;
-  Date: Date,
- product_name: string;
- price: number
+  adress: string;
+  phone: number;
+  Date: Date;
+  product_name: string;
+  price: number;
 }
-  interface address{
-    adress:string;
-    phone: number;
-    user_name: string;
-     id: number;
-     order_id:number;
-    } 
+interface orderCompany extends order {
+  user_id: number;
+  user_name: string;
+  product_name: string;
+  company_id: number;
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -52,33 +52,33 @@ interface order {
     NgIf,
     RouterLink,
   ],
-  providers:[TotalPricePipe],
+  providers: [TotalPricePipe, TotalPipe, CustomerPipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
-
 export class DashboardComponent {
-
   toggle: string = 'Overview';
   user: any = '';
   isLogged: boolean | undefined;
   add: boolean = false;
   productsNumber: number = 0;
   editphoto: boolean = false;
-   orders: [order] | undefined;
-  addressCustomer: [address] | undefined
-  Total:number=0
-  newPhoto = new FormGroup({
-    file: new FormControl(),
-  });
-  path: string | null = typeof window !== 'undefined' ? window.location.pathname : null;
+  orders: [order] | undefined;
+  ordersCompany: [orderCompany] | undefined;
+  Total: number = 0;
+  TotalCustomer: number = 0;
+  newPhoto = new FormGroup({ file: new FormControl() });
+  path: string | null =
+    typeof window !== 'undefined' ? window.location.pathname : null;
 
   constructor(
     private AuthService: AuthService,
     private userServices: UserService,
     private productsServices: ProductService,
-    private Orderservices:OrdersService,
-    private pipe:TotalPricePipe
+    private Orderservices: OrdersService,
+    private pipe: TotalPricePipe,
+    private pipeCompany: TotalPipe,
+    private CustomerPipe: CustomerPipe
   ) {}
 
   toggledashboard(event: string): void {
@@ -135,29 +135,9 @@ export class DashboardComponent {
           next: (res: any) => {
             this.user = res;
             switch (true) {
-              case (this.user?.id&&this.user.role==="company"):
+              case this.user?.id && this.user.role === 'company':
                 this.productsServices
-                .getNumberProductsbyCompany(this.user.id)
-                .subscribe({
-                  next: (res: any) => {
-                    this.productsNumber = res.msg;
-                  },
-                  error: (error: any) => {
-                    throw error;
-                  },
-                });
-                this.Orderservices.getOrdersCompany().subscribe({
-                  next: (res: any) => {
-                    this.orders = res.orders
-                    this.addressCustomer=res.address[0]},
-                  error: (error: any) => {
-                    throw error;
-                  },
-                });
-                break;
-            
-              case (this.user?.id&&this.user.role==="admin"):
-                  this.productsServices.getNumberAllProducts()
+                  .getNumberProductsbyCompany(this.user.id)
                   .subscribe({
                     next: (res: any) => {
                       this.productsNumber = res.msg;
@@ -166,20 +146,44 @@ export class DashboardComponent {
                       throw error;
                     },
                   });
-                  break; 
-              default:
-                 this.Orderservices.getOrdersUser().subscribe({
-                  next: (res: [order]| undefined) => {
-                    this.orders = res;
-                    this.pipe.transform(this.orders)
-                    this.Total=this.pipe.total;
-                   },
+                this.Orderservices.getOrdersCompany().subscribe({
+                  next: (res: any) => {
+                    this.ordersCompany = res.orders;
+                    this.pipeCompany.transform(this.ordersCompany);
+                    this.CustomerPipe.transform(this.ordersCompany);
+                    this.TotalCustomer = this.CustomerPipe.totalCusotmer;
+                    this.Total = this.pipeCompany.total;
+                  },
                   error: (error: any) => {
                     throw error;
                   },
                 });
                 break;
-            }},
+
+              case this.user?.id && this.user.role === 'admin':
+                this.productsServices.getNumberAllProducts().subscribe({
+                  next: (res: any) => {
+                    this.productsNumber = res.msg;
+                  },
+                  error: (error: any) => {
+                    throw error;
+                  },
+                });
+                break;
+              default:
+                this.Orderservices.getOrdersUser().subscribe({
+                  next: (res: [order] | undefined) => {
+                    this.orders = res;
+                    this.pipe.transform(this.orders);
+                    this.Total = this.pipe.total;
+                  },
+                  error: (error: any) => {
+                    throw error;
+                  },
+                });
+                break;
+            }
+          },
           error: (error: any) => {
             throw error;
           },

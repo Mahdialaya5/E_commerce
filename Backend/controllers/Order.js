@@ -34,7 +34,7 @@ exports.getordersByuser = async (req, res) => {
 
 exports.getordersByCompany = async (req, res) => {
   try {
-    const [result] = await connectiondb.query(
+   /* const [result] = await connectiondb.query(
       `
             SELECT 
                 order_details.*, 
@@ -70,9 +70,21 @@ exports.getordersByCompany = async (req, res) => {
 
     const allOrders = await Promise.all(promises);
 
-    orders_address.push(...allOrders);
-
-    return res.status(200).json({ address: orders_address, orders: result });
+    orders_address.push(...allOrders);*/
+    const [result] = await connectiondb.query(`select orders.id AS order_id,
+      adress,
+      phone,
+      Date,
+      user_id,
+      users.user_name,
+      products.product_name,
+      products.price,
+      products.company_id
+      From  orders
+      JOIN products ON products.id=product_id
+      JOIN users ON users.id=user_id
+      WHERE products.company_id=${req.user[0].id}`);
+    return res.status(200).json({ orders: result });
   } catch (error) {
     return res.status(500).send({ msg: error.message });
   }

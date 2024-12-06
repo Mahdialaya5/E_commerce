@@ -8,13 +8,19 @@ interface order {
   product_name: string;
   price: number;
 }
+interface orderCompany extends order {
+  user_id: number;
+  user_name: string;
+  product_name: string;
+  company_id: number;
+}
 @Pipe({
-  name: 'totalPrice',
+  name: 'total',
   standalone: true,
 })
-export class TotalPricePipe implements PipeTransform {
+export class TotalPipe implements PipeTransform {
   total: number = 0;
-  transform(value: [order] | undefined): void {
+  transform(value: [orderCompany] | undefined): void {
     value?.map((el) => (this.total += el.price));
   }
 }

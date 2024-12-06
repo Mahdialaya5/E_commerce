@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -10,13 +10,12 @@ export class AuthGuard {
 
   canActivate(): void {
     this.AuthService.isLoggedIn().subscribe((isLoggedIn) => {
-        if (isLoggedIn) {
-          return true;
-        } else {
-            this.router.navigate(['/']);
-            return false
-        }
-      });
+      if (isLoggedIn) {
+        return true;
+      } else {
+        this.router.navigate(['/']);
+        return false;
+      }
+    });
   }
-
 }

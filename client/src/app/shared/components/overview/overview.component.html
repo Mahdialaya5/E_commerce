@@ -1,24 +1,20 @@
-<div class="content"   >
-    <h2> Overview</h2>
-    
-  <div class="overview-cards">
-      
-        <div class="card overview-card" *ngIf='user?.role!=="user"'>
-            <h3>Overview</h3>
-            <p  *ngIf='user?.role=="admin"' >Active Products: {{productsNumber}}</p>
-            <p>Total Sales: $10,000</p>
-            <p>Total Customers: 500</p>
-            <p>Total Revenue: $50,000</p>
-        </div>
-        <div class="card orders-card">
-            <h3>Orders</h3>
-            <p> Orders: {{ordernumber}}</p>
-            <p> Total price of orders: {{Total}} TND</p>
-        </div>
-     <div *ngIf='user?.role==="company"'  class="card products-card">
-            <h3>Products</h3>
-            <p>Active Products: {{productsNumber}}</p>
-           
-        </div>
+<div class="content">
+  <h2>Overview</h2>
+ <div class="overview-cards">
+    <div class="card overview-card" *ngIf="user?.role !== 'user'">
+      <h3>Overview</h3>
+      <p *ngIf="user?.role == 'admin'">Active Products: {{ productsNumber }}</p>
+      <p>Total Customers: {{ TotalCustomer }}</p>
     </div>
+    <div class="card orders-card">
+      <h3>Orders</h3>
+      <p *ngIf="user?.role === 'company'">Orders: {{ ordersCompanyNumber }}</p>
+      <p *ngIf="user?.role === 'user'">Orders: {{ ordernumber }}</p>
+      <p>Total price of the orders: {{ Total }} TND</p>
+    </div>
+    <div *ngIf="user?.role === 'company'" class="card products-card">
+      <h3>Products</h3>
+      <p>Active Products: {{ productsNumber }}</p>
+    </div>
+  </div>
 </div>
