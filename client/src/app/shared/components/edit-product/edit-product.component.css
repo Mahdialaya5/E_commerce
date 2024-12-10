@@ -1,23 +1,8 @@
-.btn {
-    padding: 10px 15px;
-    background-color: white;
-    color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-.btn:disabled {
-    cursor: not-allowed; 
-     color: #666; 
-    border: 1px solid #aaa;
-    opacity: 0.6; 
-}
 .form{
     padding:20% 2px;
     height: 560px;
     width: 25%;
-    background-color: #6482AD;
+  background-color: #6482AD;
     position:fixed;
     top: 45px;
     left:33%;
@@ -29,11 +14,28 @@
     gap: 3%;
     z-index: 1000;
 }
+
 .div-form{
     
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.btn {
+    padding: 10px 15px;
+    background-color: white;
+    color: #007bff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn:disabled {
+    cursor: not-allowed; 
+     color: #666; 
+    border: 1px solid #aaa;
+    opacity: 0.6; 
 }
 input:focus{
     border-color: #007bff;
@@ -88,8 +90,12 @@ select {
 }
 @media (max-width: 665px){
     .form{
-        width:45%
+        width:45%;
+       top:5px;
+       gap:0%;
+       height: 515px;
     }
+   
 }
 
 @media (max-width: 524px){

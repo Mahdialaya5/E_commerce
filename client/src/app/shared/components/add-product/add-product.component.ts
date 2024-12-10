@@ -62,7 +62,8 @@ export class AddProductComponent {
           this.productForm.reset();
         },
         error: (err: any) => {
-          this.error = 'Add failed';
+          this.error = err.error.msg;
+          
         },
       });
     }

@@ -95,7 +95,7 @@ select {
 @media (max-width: 650px){
     .form{
         width:45%;
-        padding: 9% 2px;
+        padding: 20% 2px;
     }
 }
 
@@ -103,7 +103,7 @@ select {
     .form{
         width:90%;
         left: 2%;
-        padding: 10% 2px;
+        
     }
     .fa{
         right: 80px;} 

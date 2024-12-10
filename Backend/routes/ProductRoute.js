@@ -9,8 +9,8 @@ router.get("/getproducts",productControler.getProducts);
 router.get("/oneproduct/:id",productControler.getOneProduct)
 router.get("/:id",productControler.getProductsByCompany)
 router.get("/numberproducts/:id",isAuth(),productControler.getNumberProductByCompany)
-router.post("/add",isAuth(),isCompany,upload("products").single("file"),productControler.addProduct);
-router.put("/:id",isAuth(),isCompany,upload("products").single("file"),isAuth(),isCompany,productControler.updateProduct);
+router.post("/add",upload("products").single("file"),isAuth(),isCompany,productControler.addProduct);
+router.put("/:id",upload("products").single("file"),isAuth(),isCompany,productControler.updateProduct);
 router.delete("/:id",isAuth(),isCompany,productControler.deleteProduct)
 router.get("/admin/numberproducts",isAuth(),isAdmin,productControler.getNumberProducts)
 

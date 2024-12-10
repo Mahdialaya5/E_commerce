@@ -27,6 +27,7 @@ export class ListProductsComponent {
   @Input() productList: [product] | undefined;
   @Input() user_id: string | null = '';
   @Input() pathname: string | null = '';
+   id:string|undefined
     oneProduct:product | undefined 
      edit:boolean=false
 
@@ -49,8 +50,9 @@ export class ListProductsComponent {
 
   return(event:boolean):void{this.edit=event } 
 
- editProduct(value:product):void{
-  this.oneProduct=value
+ editProduct(product: product,id: string):void{
+  this.id=id
+  this.oneProduct=product
   this.edit=true
  }
 

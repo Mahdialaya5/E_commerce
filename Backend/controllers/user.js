@@ -8,17 +8,20 @@ exports.register = async (req, res) => {
     const { email, password, role, username } = req.body;
 
     if (role === "admin") {
-      return res.status(401).json({ msg: "access denied" });
+      return res.status(401).json({ msg: "Access denied" });
+    }
+    if (role === "company"&&!req.file) {
+      return res.status(401).json({ msg: "Should be a logo" });
     }
     if (password.length < 6) {
-      return res.status(400).json({ msg: "password should be 6 caracteres" });
+      return res.status(400).json({ msg: "Password should be 6 caracteres" });
     }
     const existUser = await connectiondb.query(
       `select * from users where email="${email}"`
     );
 
     if (existUser[0][0]) {
-      return res.status(400).send({ msg: "email exist, please login" });
+      return res.status(400).send({ msg: "Email exist, please login" });
     }
     var url = "";
     if (req.file) {

@@ -64,6 +64,18 @@ exports.addProduct = async (req, res) => {
   try {
     const { id } = req.user[0];
     const { name, price,description } = req.body;
+    const forbiddenChars = /["']/;
+    if (forbiddenChars.test(description)) {
+      return res.status(400).send({ msg: "The description must not contain single or double quotes." });
+  }
+
+  const existproduct = await connectiondb.query(
+    `select * from products where product_name="${name}"`
+  );
+
+  if (existproduct[0][0]) {
+    return res.status(400).send({ msg: "Product exist " });
+  }
     const datenow = new Date();
     const day = datenow.getDate();
     const month = datenow.getMonth() + 1;
@@ -73,8 +85,7 @@ exports.addProduct = async (req, res) => {
     const url = `${req.protocol}://${req.get("host")}/uploads/products/${
       req.file.filename
     }`;
-    const [result] =
-      await connectiondb.query(`INSERT INTO products (product_name,description,add_At,price,photo,company_id)
+    const [result] = await connectiondb.query(`INSERT INTO products (product_name,description,add_At,price,photo,company_id)
                                 VALUES("${name}","${description}","${date}",${price},"${url}",${id})`);
  
     return res.status(201).json({ msg: "Add successfully" });
@@ -101,6 +112,9 @@ exports.updateProduct = async (req, res) => {
         );
       }
       if (req.body.description) {
+        if (forbiddenChars.test(description)) {
+          return res.status(400).json({ error: "The description must not contain single or double quotes." });
+      }
         const result = await connectiondb.query(
           `UPDATE products SET description='${req.body.description}' WHERE id='${req.params.id}'`
         );
