@@ -166,6 +166,6 @@ exports.getNumberProducts=async(req,res)=>{
      return res.status(200).send({msg:products[0].number});
   } catch (error) {
    
-  return   res.status(400).send({ msg: error.message });
+  return   res.status(500).send({ msg: error.message });
   }
 }

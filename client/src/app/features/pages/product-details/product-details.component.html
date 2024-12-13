@@ -9,5 +9,6 @@
     <div class="btns" >
 <button routerLink="/" >Cancel </button>
 <button  *ngIf='role=="user"' [routerLink]="['/order',product.id]" >Send order</button>
+<button  *ngIf='role==""' class="btn_guest" >Send order</button>
 </div>
 </div>

@@ -46,6 +46,12 @@
   flex-wrap: wrap;
   width: 61%;
 }
+.btn_guest{
+  cursor: not-allowed; 
+     color: white;
+    border: 1px solid #aaa;
+    opacity: 0.6; 
+}
 button:hover {
 background-color: #489af2}
  

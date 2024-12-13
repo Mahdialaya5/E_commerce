@@ -6,7 +6,7 @@ CREATE TABLE  users(
     password_user VARCHAR(250) NOT NULL,
     photo VARCHAR(250) ,
     role_user ENUM('user','company','admin'),
-       UNIQUE KEY unique_email (email)
+       UNIQUE KEY email 
 );
 
 CREATE TABLE products(
@@ -17,21 +17,15 @@ CREATE TABLE products(
     add_At TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     photo VARCHAR(250) ,
     company_id INT NOT NULL,
+       UNIQUE KEY product_name 
        FOREIGN KEY (company_id) REFERENCES users(id)
 );
 CREATE TABLE orders(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     adress  VARCHAR(255) NOT NULL,
+    phone INT(15) NOT NULL,
+    product_id int(250) ,
     user_id INT 
-        FOREIGN KEY (user_id) REFERENCES users(id)
-   
-);
-CREATE TABLE order_details(
-    id INT AUTO_INCREMENT PRIMARY KEY ,
-    product  VARCHAR(250) NOT NULL ,
-    phone INT ,
-    user_id INT 
-        FOREIGN KEY (user_id) REFERENCES users(id)
-        FOREIGN KEY (product) REFERENCES products(product_name)
-   
+         FOREIGN KEY (user_id) REFERENCES users(id)
+         FOREIGN KEY (product_id) REFERENCES products(id)
 );

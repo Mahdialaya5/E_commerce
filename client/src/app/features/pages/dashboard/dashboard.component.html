@@ -29,8 +29,10 @@
       [user]="user"
       [TotalCustomer]="TotalCustomer"
       [Total]="Total"
+      [mostSeller]="mostSeller"
       [ordersCompanyNumber]=" ordersCompany !== undefined ? ordersCompany.length : 0 "
       [ordernumber]="orders !== undefined ? orders.length : 0"
+      [ordersnumberadmin]="orderNumber"
       *ngIf="toggle === 'Overview'"
       [productsNumber]="productsNumber" />
     <app-list-products

@@ -34,6 +34,10 @@ interface orderCompany extends order {
   product_name: string;
   company_id: number;
 }
+interface mostSeller {
+  product_name: string;
+      total_order: number;
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -65,6 +69,8 @@ export class DashboardComponent {
   editphoto: boolean = false;
   orders: [order] | undefined;
   ordersCompany: [orderCompany] | undefined;
+  mostSeller:[mostSeller]|undefined
+  orderNumber:number=0
   Total: number = 0;
   TotalCustomer: number = 0;
   newPhoto = new FormGroup({ file: new FormControl() });
@@ -169,6 +175,30 @@ export class DashboardComponent {
                     throw error;
                   },
                 });
+                this.Orderservices.getOrdersAdmin().subscribe({
+                  next:(res:any)=>{
+                    this.orderNumber=res.msg
+                  },
+                  error: (error: any) => {
+                    throw error;
+                  }
+                })
+                this.Orderservices.getSumOrdersAdmin().subscribe({
+                  next:(res:any)=>{
+                    this.Total=res.msg
+                  },
+                  error: (error: any) => {
+                    throw error;
+                  }
+                })
+                this.Orderservices.getMostProductSeller().subscribe({
+                  next:(res:any)=>{
+                    this.mostSeller=res.msg
+                  },
+                  error: (error: any) => {
+                    throw error;
+                  }
+                })
                 break;
               default:
                 this.Orderservices.getOrdersUser().subscribe({

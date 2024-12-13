@@ -34,43 +34,7 @@ exports.getordersByuser = async (req, res) => {
 
 exports.getordersByCompany = async (req, res) => {
   try {
-   /* const [result] = await connectiondb.query(
-      `
-            SELECT 
-                order_details.*, 
-                users.user_name, 
-                users.id,
-                products.company_id
-            FROM 
-                order_details
-            JOIN 
-                users ON users.id = order_details.user_id
-            JOIN 
-                products ON products.product_name = order_details.product
-            WHERE 
-                products.company_id = ?
-        `,
-      [req.user[0].id]
-    );
-
-    var orders_address = [];
-    const promises = result.map(async (el) => {
-      const [result2] = await connectiondb.query(
-        `   SELECT  orders.id AS order_id, adress,phone,
-            users.user_name,
-            users.id
-            FROM orders
-            JOIN users ON users.id=orders.user_id
-            WHERE orders.user_id = ?
-          `,
-        [el.user_id]
-      );
-      return result2;
-    });
-
-    const allOrders = await Promise.all(promises);
-
-    orders_address.push(...allOrders);*/
+   
     const [result] = await connectiondb.query(`select orders.id AS order_id,
       adress,
       phone,
@@ -89,3 +53,52 @@ exports.getordersByCompany = async (req, res) => {
     return res.status(500).send({ msg: error.message });
   }
 };
+
+exports.getNumberOrders=async(req,res)=>{
+
+  try {
+    const [orders] = await connectiondb.query(
+      `SELECT COUNT(*) AS number
+       FROM orders`);
+     return res.status(200).send({msg:orders[0].number});
+  } catch (error) {
+    return   res.status(500).send({ msg: error.message });
+  }
+}
+
+exports.getSumOrders=async(req,res)=>{
+
+  try {
+    const [result] = await connectiondb.query(`SELECT 
+    product_id,
+    SUM(products.price) AS total_price
+FROM 
+    orders
+JOIN 
+    products ON products.id = orders.product_id`);
+    return res.status(200).json({msg:result[0].total_price});
+
+  } catch (error) {
+    return   res.status(500).send({ msg: error.message });
+  }
+}
+
+exports.getMostProductseller=async(req,res)=>{
+  try {
+    
+    const [result] = await connectiondb.query(`SELECT 
+   products.product_name,
+     COUNT(*) AS total_order
+FROM 
+    orders
+  JOIN products ON products.id = orders.product_id
+GROUP BY 
+    product_id
+ORDER BY 
+    total_order DESC
+LIMIT 1;`);
+      return res.status(200).json({msg:result});
+  } catch (error) {
+    return   res.status(500).send({ msg: error.message });
+  }
+}

@@ -21,7 +21,12 @@ interface orderCompany extends order {
 export class CustomerPipe implements PipeTransform {
   customerList: [string]=['']
   totalCusotmer: number = 0;
-  transform(value: [orderCompany] | undefined): void {
+  transform(value: [orderCompany] |undefined): void {
+    if (value && value[0].order_id==undefined) {
+      this.totalCusotmer=0
+      return
+    }
+    
     value?.map((el) => this.customerList.push(el.user_name));
     const uniqueCustomers = new Set(this.customerList);
     this.totalCusotmer = uniqueCustomers.size;

@@ -30,14 +30,17 @@ export class ListProductsComponent {
    id:string|undefined
     oneProduct:product | undefined 
      edit:boolean=false
-
+    NoProduct:boolean=false
   constructor(private PorductService: ProductService) {}
 
   ngOnInit() {
 
    if (this.user_id) {
     this.PorductService.getProductsbyCompany(this.user_id).subscribe({
-      next: (res: any) => {
+      next: (res:any) => {
+        if (res[0]?.id==undefined) {
+          this.NoProduct=true
+        }
         this.productList = res;
       },
       error: (err: any) => {

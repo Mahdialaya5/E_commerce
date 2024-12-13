@@ -1,4 +1,5 @@
 <div class="container">
+  <h3 *ngIf="NoProduct==true"  >No products</h3>
   @for (product of productList; track product.id){
   <div class="product-card" >
     <img [src]="product.photo" alt="photo" />
@@ -10,7 +11,7 @@
       <app-edit-product   *ngIf="edit===true&&id==product.id" [oneProduct]=oneProduct (return)="return($event)"   />
       <button class="details" [routerLink]="['/product',product.id]"  *ngIf="pathname !== '/dashboard'" >Details</button>
       <button class="edit"
-        *ngIf="pathname == '/dashboard'"
+      *ngIf="pathname == '/dashboard'"
         (click)="editProduct(product,product.id)">
         <i class="fas fa-edit"></i>Edit</button>
       <button
