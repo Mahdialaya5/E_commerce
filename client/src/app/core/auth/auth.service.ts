@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../../../environments/environment';
+
 
 interface UserLogin {
   email: string;
@@ -22,7 +24,7 @@ interface user {
 export class AuthService {
   private isAuthenticated = new BehaviorSubject<boolean>(false);
   private readonly cookieName = 'token';
-  private url: string = 'http://localhost:3000/api/user';
+  private url: string  = `${environment.BaseURL}/api/user`;
   currentuser: user | undefined;
 
   constructor(

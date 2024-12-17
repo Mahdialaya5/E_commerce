@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
+
 
 interface Edit {
   username: string;
@@ -14,7 +16,7 @@ interface Edit {
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://localhost:3000/api/user';
+  private apiUrl = `${environment.BaseURL}/api/user`;
 
   error: string | null = null;
 

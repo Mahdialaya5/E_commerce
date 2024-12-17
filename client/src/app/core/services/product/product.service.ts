@@ -2,20 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, Observable, tap } from 'rxjs';
+import { environment } from '../../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000/api/product';
+  private apiUrl = `${environment.BaseURL}/api/product`;
 
   error: string | null = null;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient) {}
 
   getProducts(): any {
     return this.http
-      .get<any>(`${this.apiUrl}/getproducts`)
+      .get<any>(`${this.apiUrl}/getproducts` )
       .pipe(map((response: any) => response));
   }
 
