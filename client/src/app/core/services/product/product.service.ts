@@ -17,7 +17,7 @@ export class ProductService {
 
   getProducts(): any {
     return this.http
-      .get<any>(`${this.apiUrl}/getproducts` )
+      .get<any>(`${this.apiUrl}/getproducts`)
       .pipe(map((response: any) => response));
   }
 
